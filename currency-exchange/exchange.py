@@ -1,4 +1,4 @@
-from concurrent.futures.process import _ExecutorManagerThread
+"""Functions to support features for a currency exchange calculator."""
 
 
 def exchange_money(budget, exchange_rate):
@@ -68,10 +68,6 @@ def exchangeable_value(budget, exchange_rate, spread, denomination):
 
     exchange_with_spread = exchange_rate + (exchange_rate * (spread / 100))
     new_currency_cash = budget / exchange_with_spread
-    extra_after_denominated_division = new_currency_cash % denomination
+    after_denominated_division = new_currency_cash % denomination
 
-    return int(new_currency_cash - extra_after_denominated_division)
-
-
-print(exchangeable_value(127.25, 1.20, 10, 20))
-print(exchangeable_value(127.25, 1.20, 10, 5))
+    return int(new_currency_cash - after_denominated_division)

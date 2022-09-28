@@ -100,6 +100,3 @@ def scalene(sides):
         verdict = False
 
     return verdict
-
-
-print(scalene([5, 1, 5]))

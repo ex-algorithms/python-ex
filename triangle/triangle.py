@@ -17,7 +17,7 @@ def _triangle_equal(sides):
     return verdict
 
 
-def _zero_length_sides(sides):
+def _zero_lengths(sides):
     """Searches triangle sides input for zero.
 
     :param sides: list - a list of sides in the triangle to be tested.
@@ -43,7 +43,7 @@ def equilateral(sides):
     if max(sides) == min(sides):
         verdict = True
 
-    if _zero_length_sides(sides):
+    if _zero_lengths(sides):
         verdict = False
 
     return verdict
@@ -80,5 +80,23 @@ def scalene(sides):
     :return: bool - True, if two sides are of equal length.
     """
 
+    a, b, c = sides
 
-print(isosceles([3, 5, 3]))
+    verdict = False
+
+    if a != b != c:
+        verdict = True
+
+    if a == c or a == b or b == c:
+        verdict = False
+
+    if not _triangle_equal(sides):
+        verdict = False
+
+    if _zero_lengths(sides):
+        verdict = False
+
+    return verdict
+
+
+print(scalene([5, 1, 5]))

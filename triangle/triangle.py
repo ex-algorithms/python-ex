@@ -50,11 +50,7 @@ def equilateral(sides):
 
 
 def isosceles(sides):
-<<<<<<< HEAD
     """Determines if a triangle is isosceles.
-=======
-    """Determines if a triangle is an isosceles.
->>>>>>> 36f90565f22ca5a00a73d7bcf1f63e46d255d704
 
     :param sides: list - a list of sides in the triangle to be tested.
     :return: bool - True, if two sides are of equal length.

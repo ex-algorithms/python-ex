@@ -33,7 +33,7 @@ def _zero_length_sides(sides):
 
 
 def equilateral(sides):
-    """Identifies whether a triangle is equilateral.
+    """Determines if a triangle is equilateral.
 
     :param sides: list - a list of sides in the triangle to be tested.
     :return: bool - True, if all sides are of equal length.
@@ -50,7 +50,7 @@ def equilateral(sides):
 
 
 def isosceles(sides):
-    """Determines if a triangle is an isosceles.
+    """Determines if a triangle is isosceles.
 
     :param sides: list - a list of sides in the triangle to be tested.
     :return: bool - True, if two sides are of equal length.
@@ -74,7 +74,11 @@ def isosceles(sides):
 
 
 def scalene(sides):
-    pass
+    """Determines if a triangle is scalene.
+
+    :param sides: list - a list of sides in the triangle to be tested.
+    :return: bool - True, if two sides are of equal length.
+    """
 
 
 print(isosceles([3, 5, 3]))

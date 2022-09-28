@@ -1,6 +1,22 @@
 """Identify the type of triangle based on an argument list of sides."""
 
 
+def _triangle_equal(sides):
+    """Determines whether or not a triangle's sides are equal.
+
+    :param sides: a list of sides in the triangle to be tested.
+    :return: True is triangle sides are equal.
+    """
+    a, b, c = sides
+
+    verdict = False
+
+    if a + b >= c and a + c >= b and b + c >= a:
+        verdict = True
+
+    return verdict
+
+
 def _zero_length_sides(sides):
     """Searches triangle sides input for zero.
 
@@ -34,8 +50,25 @@ def equilateral(sides):
 
 
 def isosceles(sides):
-    pass
+    a, b, c = sides
+
+    verdict = False
+
+    if a == b or a == c:
+        verdict = True
+    elif b == a or b == c:
+        verdict = True
+    elif c == a or c == b:
+        verdict = True
+
+    if not _triangle_equal(sides):
+        verdict = False
+
+    return verdict
 
 
 def scalene(sides):
     pass
+
+
+print(isosceles([3, 5, 3]))

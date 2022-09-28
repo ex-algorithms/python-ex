@@ -38,9 +38,12 @@ def equilateral(sides):
     :param sides: list - a list of sides in the triangle to be tested.
     :return: bool - True, if all sides are of equal length.
     """
+
+    a, b, c = sides
+
     verdict = False
 
-    if max(sides) == min(sides):
+    if a == b == c:
         verdict = True
 
     if _zero_lengths(sides):

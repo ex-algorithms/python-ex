@@ -112,11 +112,3 @@ def score(dice, category):
 
     # return score, "|", dice
     return score
-
-
-# # scaffolding
-# print(score([5, 5, 5, 5, 5], YACHT)
-# print(_similarities([5, 2, 2, 1, 5], YACHT))
-# print(_similarities([2, 2, 4, 4, 2], FULL_HOUSE))
-# print(_similarities([2, 3, 3, 3, 3], FOUR_OF_A_KIND))
-# print(_similarities([6, 6, 6, 6, 6], YACHT))

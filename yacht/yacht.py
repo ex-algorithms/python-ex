@@ -1,21 +1,22 @@
 """ Determine number of scores in a Yacht dice game - https://en.wikipedia.org/wiki/Yacht_(dice_game). """
 
 # Default constants
-YACHT = None
 ONES = 1
 TWOS = 2
 THREES = 3
 FOURS = 4
 FIVES = 5
 SIXES = 6
-FULL_HOUSE = None
-FOUR_OF_A_KIND = None
+CHOICE = "choice"
 LITTLE_STRAIGHT = [1, 2, 3, 4, 5]
 BIG_STRAIGHT = [2, 3, 4, 5, 6]
-CHOICE = "choice"
+FULL_HOUSE = "full_house"
+FOUR_OF_A_KIND = "four_of_a_kind"
+YACHT = "yacht"
 
 # Internal constants
 _SINGLES = [ONES, TWOS, THREES, FOURS, FIVES, SIXES]
+_SIMILARITIES = [FULL_HOUSE, FOUR_OF_A_KIND, YACHT]
 
 
 def _singles(dice, number):
@@ -54,6 +55,37 @@ def _straights(dice, category, options):
     return output
 
 
+def _similarities(dice, category):
+    """Calculates game output based on dice number similarities.
+
+    :param dice: list - a list of numbers holding dice faces.
+    :param category: bool - boolean contained in a constant variable.
+    :return: int - output score based on relevant category standard.
+    """
+
+    output = 0
+
+    reps = dict()
+
+    for x in dice:
+        reps[f"{dice.count(x)}s"] = x
+
+    for key, value in reps.items():
+        if key == "5s" and category == "yacht":
+            output = 50
+
+        if key == "5s" and category == "four_of_a_kind":
+            output = reps["5s"] * 4
+
+        if key == "3s" and category == "full_house":
+            output = sum(dice)
+
+        if key == "4s" and category == "four_of_a_kind":
+            output = reps["4s"] * 4
+
+    return output
+
+
 def score(dice, category):
     """Calculate the number of scores in the game, based on the selected category.
 
@@ -75,10 +107,16 @@ def score(dice, category):
     if category == LITTLE_STRAIGHT or category == BIG_STRAIGHT:
         score = _straights(dice, category, [LITTLE_STRAIGHT, BIG_STRAIGHT])
 
+    if category in _SIMILARITIES:
+        score = _similarities(dice, category)
+
     # return score, "|", dice
     return score
 
 
 # # scaffolding
-# print(score([5, 5, 1, 5, 2], CHOICE))
-# print(_singles([5, 5, 1, 5, 2], FIVES))
+# print(score([5, 5, 5, 5, 5], YACHT)
+# print(_similarities([5, 2, 2, 1, 5], YACHT))
+# print(_similarities([2, 2, 4, 4, 2], FULL_HOUSE))
+# print(_similarities([2, 3, 3, 3, 3], FOUR_OF_A_KIND))
+# print(_similarities([6, 6, 6, 6, 6], YACHT))

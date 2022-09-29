@@ -12,7 +12,7 @@ FULL_HOUSE = None
 FOUR_OF_A_KIND = None
 LITTLE_STRAIGHT = None
 BIG_STRAIGHT = None
-CHOICE = None
+CHOICE = "choice"
 
 # Internal constants
 _SINGLES = [ONES, TWOS, THREES, FOURS, FIVES, SIXES]
@@ -52,10 +52,13 @@ def score(dice, category):
     if category in _SINGLES:
         score = _singles(dice, category)
 
+    if category == "choice":
+        score = sum(dice)
+
     # return score, "|", dice
     return score
 
 
 # # scaffolding
-# print(score([5, 5, 1, 5, 2], FIVES))
+print(score([5, 5, 1, 5, 2], CHOICE))
 # print(_singles([5, 5, 1, 5, 2], FIVES))

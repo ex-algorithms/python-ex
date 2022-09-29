@@ -10,8 +10,8 @@ FIVES = 5
 SIXES = 6
 FULL_HOUSE = None
 FOUR_OF_A_KIND = None
-LITTLE_STRAIGHT = None
-BIG_STRAIGHT = None
+LITTLE_STRAIGHT = [1, 2, 3, 4, 5]
+BIG_STRAIGHT = [2, 3, 4, 5, 6]
 CHOICE = "choice"
 
 # Internal constants
@@ -37,6 +37,23 @@ def _singles(dice, number):
     return counter * number
 
 
+def _straights(dice, category, options):
+    """Assigns straight game option score after dice analysis.
+
+    :param dice: list - a list of numbers holding dice faces.
+    :param category: bool - boolean contained in a constant variable.
+    :return: int - Thirty (30) if dice contains correct straight game numbers.
+    """
+
+    output = 0
+
+    for el in options:
+        if category == el == dice:
+            output = 30
+
+    return output
+
+
 def score(dice, category):
     """Calculate the number of scores in the game, based on the selected category.
 
@@ -55,10 +72,13 @@ def score(dice, category):
     if category == "choice":
         score = sum(dice)
 
+    if category == LITTLE_STRAIGHT or category == BIG_STRAIGHT:
+        score = _straights(dice, category, [LITTLE_STRAIGHT, BIG_STRAIGHT])
+
     # return score, "|", dice
     return score
 
 
 # # scaffolding
-print(score([5, 5, 1, 5, 2], CHOICE))
+# print(score([5, 5, 1, 5, 2], CHOICE))
 # print(_singles([5, 5, 1, 5, 2], FIVES))

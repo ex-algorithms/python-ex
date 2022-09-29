@@ -19,6 +19,7 @@ _SINGLES = [ONES, TWOS, THREES, FOURS, FIVES, SIXES]
 _SIMILARITIES = [FULL_HOUSE, FOUR_OF_A_KIND, YACHT]
 
 
+# Internal functions
 def _singles(dice, number):
     """Calculates the score for single dice game options.
 
@@ -86,6 +87,7 @@ def _similarities(dice, category):
     return output
 
 
+# Exercise function
 def score(dice, category):
     """Calculate the number of scores in the game, based on the selected category.
 
@@ -110,5 +112,4 @@ def score(dice, category):
     if category in _SIMILARITIES:
         score = _similarities(dice, category)
 
-    # return score, "|", dice
     return score

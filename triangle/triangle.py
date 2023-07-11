@@ -35,21 +35,15 @@ def isosceles(sides):
         if a == 1 or b == 1 or c == 1:
             return False
         else:
-            if a == b or a == c:
-                return True
-            elif b == c or b == a:
-                return True
-            elif c == a or c == b:
+            if (a == b or a == c) and (b == c or b == a) and (c == a or c == b):
                 return True
             else:
                 return False
 
 
 def scalene(sides):
-    verdict = False
-
     if valid_triangle(sides):
         if not isosceles(sides) and not equilateral(sides):
-            verdict = True
+            return True
 
-    return verdict
+    return False
